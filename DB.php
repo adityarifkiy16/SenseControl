@@ -24,7 +24,8 @@ class DB
 
     public function insert($temperature, $humidity)
     {
-        $timestamp = date('H:i:s');
+        date_default_timezone_set('Asia/Jakarta');
+        $timestamp = date('Y-m-d H:i:s');
         if ($temperature !== null && $humidity !== null && $timestamp !== null) {
             $sql = "INSERT INTO dht_data (temperature, humidity, created_at) VALUES (?, ?, ?)";
 
