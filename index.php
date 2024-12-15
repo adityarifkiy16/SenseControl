@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="./assets/styles.css">
 </head>
 
-<body>
+<body style="background-color: #E9EFEC;">
   <div class="container mt-5">
     <span class="d-flex justify-content-between align-items-center">
       <h1><ion-icon name="leaf-outline"></ion-icon>Dashboard</h1>
@@ -23,11 +23,11 @@
             <div class="card-body">
               <div class="media d-flex">
                 <div class="align-self-center">
-                  <ion-icon name="thermometer-outline" class="custom-icon"></ion-icon>
+                  <ion-icon name="thermometer-outline" class="display-1 text-primary"></ion-icon>
                 </div>
                 <div class="media-body text-right">
                   <h5 class="card-title font-weight-bold">Temperature</h5>
-                  <p id="temp-value" class="card-text">-</p>
+                  <p id="temp-value" class="card-text display-4">-</p>
                 </div>
               </div>
             </div>
@@ -40,11 +40,11 @@
             <div class="card-body">
               <div class="media d-flex">
                 <div class="align-self-center">
-                  <ion-icon name="fitness-outline" class="custom-icon"></ion-icon>
+                  <ion-icon name="fitness-outline" class="display-1 text-danger"></ion-icon>
                 </div>
                 <div class="media-body text-right">
                   <h5 class="card-title font-weight-bold">Humidity</h5>
-                  <p id="humd-value" class="card-text">-</p>
+                  <p id="humd-value" class="card-text display-4">-</p>
                 </div>
               </div>
             </div>
@@ -54,13 +54,13 @@
     </div>
     <!-- LED Indicators -->
     <div class="row mt-5">
-      <div class="col-md-12">
-        <h5 class="d-flex justify-content-start align-items-center">Temperature Indicator <ion-icon name="pulse-outline" class="ml-2"></ion-icon></h5>
-      </div>
-      <div class="col-md-12">
+      <div class="col-md-6 col-12 mt-2">
         <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h5 class="d-flex justify-content-start align-items-center"><ion-icon name="pulse-outline" class="mr-2"></ion-icon>Temperature Indicator:</h5>
+          </div>
           <div class="card-content">
-            <div class="card-body">
+            <div class="card-body py-4 mt-1">
               <div class="media d-flex flex-row justify-content-start">
                 <div class="align-self-center">
                   <div id="led-1" class="led-indicator"></div>
@@ -68,6 +68,20 @@
                 <div class="align-self-center ml-2">
                   <div id="led-2" class="led-indicator"></div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-12 mt-2">
+        <div class="card">
+          <div class="card-header bg-primary text-white">
+            <h5 class="d-flex justify-content-start align-items-center"><ion-icon name="pulse-outline" class="mr-2"></ion-icon>Tingkat Kelembaban:</h5>
+          </div>
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex flex-row justify-content-start align-items-center">
+                <span id="humidity-level" class="font-weight-bold text-muted">-</span>
               </div>
             </div>
           </div>
@@ -99,7 +113,9 @@
         <h5 class="d-flex justify-content-start align-items-center">Grafik Temperature & Humidity <ion-icon name="stats-chart-outline" class="ml-2"></ion-icon></h5>
       </div>
       <div class="col-12">
-        <canvas id="tempHumidityChart"></canvas>
+        <div style="width: 100%; margin: auto;">
+          <canvas id="tempHumidityChart"></canvas>
+        </div>
       </div>
     </div>
   </div>
@@ -108,7 +124,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="dataModalLabel">Data Sensor</h5>
+          <h5 class="modal-title" id="dataModalLabel">10 Data terbaru</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -133,14 +149,15 @@
   <div class="modal fade" id="audioModal" tabindex="-1" aria-labelledby="audioModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-danger text-white d-flex flex-row justify-content-between align-items-center">
           <h5 class="modal-title" id="audioModalLabel">Mohon izinkan untuk pemutaran audio</h5>
+          <ion-icon name="alert-circle-outline" class="h2 my-auto"></ion-icon>
         </div>
         <div class="modal-body">
-          Klik "Izinkan" untuk mengijinkan pemutaran audio.
+          Klik <b>"Izinkan"</b> untuk mengijinkan pemutaran audio.
         </div>
         <div class="modal-footer">
-          <button type="button" id="playAudioButton" class="btn btn-primary">Izinkan</button>
+          <button type="button" id="playAudioButton" class="btn btn-danger">Izinkan</button>
         </div>
       </div>
     </div>

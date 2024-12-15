@@ -103,6 +103,7 @@ const ledStates = {};
     async function displaySensorData() {
       const data = await fetchSensorData();
       handleTemperature(data.temperature);
+      handleHumidity(data.humidity);
       setHumd(data.humidity);
       setTemp(data.temperature);
       updateChart(data.sensors_data);
@@ -155,6 +156,19 @@ const ledStates = {};
       }
     }
 
+    function handleHumidity(humidity) {
+      humidity = parseFloat(humidity);
+      let humidityLevel;
+      if (humidity >= 30 && humidity < 60) {
+        humidityLevel = 'Kering/Aman'
+      } else if (humidity >= 60 && humidity < 70) {
+        humidityLevel = 'Mulai banyak uap air/Normal'
+      } else if (humidity >= 70) {
+        humidityLevel = 'Terdapat banyak uap air'
+      }
+      document.getElementById('humidity-level').textContent = humidityLevel
+    }
+
     function turnLedUiOn(led) {
       document.getElementById("led-" + led).classList.add("led-on");
     }
@@ -173,7 +187,7 @@ const ledStates = {};
 
     document.addEventListener("DOMContentLoaded", function() {
       const playButton = document.getElementById("playAudioButton");
-
+      
       const modal = new bootstrap.Modal(document.getElementById("audioModal"));
       modal.show();
 
